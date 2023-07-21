@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfirmationFormWeb));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnAcceptAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -46,15 +47,16 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnAcceptAll);
             this.splitContainer1.Panel1.Controls.Add(this.btnRefresh);
             this.splitContainer1.Size = new System.Drawing.Size(431, 641);
-            this.splitContainer1.SplitterDistance = 30;
+            this.splitContainer1.SplitterDistance = 60;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRefresh.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnRefresh.Location = new System.Drawing.Point(0, 0);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(431, 30);
@@ -62,6 +64,17 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnConfirmAll
+            // 
+            this.btnAcceptAll.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnAcceptAll.Location = new System.Drawing.Point(0, 30);
+            this.btnAcceptAll.Name = "btnConfirmAll";
+            this.btnAcceptAll.Size = new System.Drawing.Size(431, 30);
+            this.btnAcceptAll.TabIndex = 1;
+            this.btnAcceptAll.Text = "Accept All";
+            this.btnAcceptAll.UseVisualStyleBackColor = true;
+            this.btnAcceptAll.Click += new System.EventHandler(this.btnAcceptAll_Click);
             // 
             // ConfirmationFormWeb
             // 
@@ -86,5 +99,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnAcceptAll;
     }
 }

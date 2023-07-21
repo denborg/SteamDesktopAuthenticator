@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SteamAuth;
 using System.Drawing.Drawing2D;
+using System.Collections.Generic;
 
 namespace Steam_Desktop_Authenticator
 {
@@ -125,6 +126,41 @@ namespace Steam_Desktop_Authenticator
             {
                 Label errorLabel = new Label() { Text = "Something went wrong:\n" + ex.Message, AutoSize = true, ForeColor = Color.Red, Location = new Point(20, 20) };
                 this.splitContainer1.Panel2.Controls.Add(errorLabel);
+            }
+        }
+
+        private async void btnAcceptAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var confirmations = await steamAccount.FetchConfirmationsAsync();
+
+                if (confirmations == null || confirmations.Length == 0)
+                {
+                    MessageBox.Show("Nothing to confirm.", "Trade Confirmations", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                List<Confirmation> confsToAccept = new List<Confirmation>();
+
+                foreach (var confirmation in confirmations)
+                {
+                    if (confirmation.ConfType == Confirmation.EMobileConfirmationType.MarketListing)
+                    {
+                        confsToAccept.Add(confirmation);
+                        //bool result = await steamAccount.AcceptConfirmation(confirmation);
+
+                        //await this.LoadData();
+                    }
+                }
+                if (confsToAccept.Count > 0)
+                {
+                    bool result = await steamAccount.AcceptMultipleConfirmations(confsToAccept.ToArray());
+                }
+                await this.LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong:\n" + ex.Message, "Error Accepting", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
